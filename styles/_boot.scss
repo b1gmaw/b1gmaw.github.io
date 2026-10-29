@@ -1,0 +1,237 @@
+/*Boot screen*/
+$boot-line-gap: 230ms;
+$boot-lines: 6;
+$boot-ready: $boot-line-gap * $boot-lines + 250ms;
+
+.boot-screen{
+    display: none;
+}
+
+html.boot{
+    overflow: hidden;
+    .boot-screen{
+        display: grid;
+    }
+}
+
+.boot-screen{
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-boot);
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    cursor: pointer;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    --boot-scan: rgba(0, 0, 0, .22);
+    background-image:
+        repeating-linear-gradient(to bottom, transparent 0 2px, var(--boot-scan) 2px 3px),
+        radial-gradient(ellipse 55% 45% at 50% 55%, var(--color-glow), transparent 70%);
+    // Corner frame
+    &::before{
+        content: '';
+        position: absolute;
+        inset: clamp(.6rem, 2vw, 1.1rem);
+        pointer-events: none;
+        background:
+            linear-gradient(var(--color-accent), var(--color-accent)) top left / 2.5rem 2px,
+            linear-gradient(var(--color-accent), var(--color-accent)) top left / 2px 2.5rem,
+            linear-gradient(var(--color-accent), var(--color-accent)) bottom right / 2.5rem 2px,
+            linear-gradient(var(--color-accent), var(--color-accent)) bottom right / 2px 2.5rem;
+        background-repeat: no-repeat;
+    }
+    // Exit flash
+    &::after{
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: var(--color-accent);
+        opacity: 0;
+    }
+    // Keeps catching pointer events while exiting so a tap's click can't fall through
+    &.is-exiting{
+        animation: bootOut .6s cubic-bezier(.7, 0, .3, 1) forwards;
+        &::after{
+            animation: bootFlash .6s ease-out forwards;
+        }
+    }
+}
+
+.light-mode .boot-screen{
+    --boot-scan: rgba(0, 0, 0, .06);
+}
+
+.boot-log{
+    font-family: var(--font-mono);
+    font-size: clamp(.66rem, 1.6vw, .78rem);
+    line-height: 1.9;
+    color: var(--color-muted);
+    li{
+        opacity: 0;
+        animation: bootLine .01s steps(1) forwards;
+        @for $i from 1 through $boot-lines{
+            &:nth-child(#{$i}){
+                animation-delay: $boot-line-gap * $i;
+            }
+        }
+        &::before{
+            content: '> ';
+            color: var(--color-accent);
+        }
+    }
+    .dots::before{
+        content: '........';
+        letter-spacing: .1em;
+        opacity: .5;
+    }
+    .ok{
+        color: var(--color-cyan);
+    }
+    .cursor{
+        display: inline-block;
+        width: .55em;
+        height: 1em;
+        margin-left: .3em;
+        vertical-align: -.15em;
+        background: var(--color-accent);
+        animation: blink 1s steps(1) infinite;
+    }
+}
+
+.boot-center{
+    place-self: center;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+}
+
+.boot-kicker{
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--color-cyan);
+    opacity: 0;
+    animation: riseIn .5s var(--ease) forwards;
+    animation-delay: $boot-line-gap * 3;
+}
+
+.boot-title{
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 19vw, 11rem);
+    font-weight: 700;
+    line-height: .82;
+    letter-spacing: -.02em;
+    color: var(--color-accent);
+    margin: .5rem 0 1.75rem;
+    opacity: 0;
+    animation: bootTitle .7s steps(6) forwards;
+    animation-delay: $boot-line-gap * 3;
+}
+
+.boot-progress{
+    width: min(22rem, 70vw);
+    height: 4px;
+    background: var(--color-line);
+    margin-bottom: 2.25rem;
+    span{
+        display: block;
+        height: 100%;
+        background: var(--color-accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: bootLoad #{$boot-ready - 300ms} steps(18) forwards;
+        animation-delay: 300ms;
+    }
+}
+
+.boot-continue{
+    font-family: var(--font-mono);
+    font-size: clamp(.75rem, 2vw, .9rem);
+    font-weight: 500;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    padding: .75rem 1.25rem;
+    border: 1px solid var(--color-line);
+    transition: border-color .2s var(--ease);
+    opacity: 0;
+    animation:
+        bootLine .01s steps(1) forwards $boot-ready,
+        bootPulse 1.6s ease-in-out infinite #{$boot-ready + 300ms};
+    &::before,
+    &::after{
+        color: var(--color-accent);
+    }
+    &::before{ content: '[ '; }
+    &::after{ content: ' ]'; }
+    // Focused on load, so the frame itself is the focus indicator
+    &:focus-visible,
+    &:hover{
+        outline: none;
+        border-color: var(--color-accent);
+    }
+    .tap-hint{
+        display: none;
+    }
+    @media (hover: none) and (pointer: coarse){
+        .key-hint{ display: none; }
+        .tap-hint{ display: inline; }
+    }
+}
+
+.boot-foot{
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
+@keyframes bootLine{
+    to{ opacity: 1; }
+}
+
+@keyframes bootTitle{
+    0%{ opacity: 0; clip-path: inset(0 0 100% 0); transform: translateX(-10px); }
+    40%{ opacity: 1; clip-path: inset(30% 0 40% 0); transform: translateX(8px); }
+    70%{ clip-path: inset(0 0 20% 0); transform: translateX(-4px); }
+    100%{ opacity: 1; clip-path: inset(0 0 0 0); transform: none; }
+}
+
+@keyframes bootLoad{
+    to{ transform: scaleX(1); }
+}
+
+@keyframes bootPulse{
+    0%, 100%{ opacity: 1; }
+    50%{ opacity: .35; }
+}
+
+@keyframes bootOut{
+    0%{ clip-path: inset(0 0 0 0); transform: none; }
+    15%{ transform: translateX(-12px) skewX(-8deg); }
+    30%{ transform: translateX(10px) skewX(6deg); clip-path: inset(0 0 0 0); }
+    60%{ transform: scaleY(1); clip-path: inset(48% 0 48% 0); }
+    85%{ clip-path: inset(49.8% 20% 49.8% 20%); }
+    100%{ clip-path: inset(50% 50% 50% 50%); opacity: 0; }
+}
+
+@keyframes bootFlash{
+    0%{ opacity: 0; }
+    25%{ opacity: .55; }
+    100%{ opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .boot-log li,
+    .boot-kicker,
+    .boot-title,
+    .boot-progress span,
+    .boot-continue{
+        animation-delay: 0s !important;
+    }
+}
