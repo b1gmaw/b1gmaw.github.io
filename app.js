@@ -159,5 +159,50 @@ async function syncRepos(){
     }
 }
 
+//Boot screen: any key / click / tap dismisses it
+function BootScreen(){
+    const root = document.documentElement;
+    const boot = document.getElementById('boot');
+    if(!root.classList.contains('boot')){
+        boot.remove();
+        return;
+    }
+
+    const behind = document.querySelectorAll('body > :not(#boot)');
+    behind.forEach((node) => node.inert = true);
+    boot.querySelector('.boot-continue').focus({preventScroll: true});
+
+    let done = false;
+    function finish(){
+        if(!boot.isConnected) return;
+        boot.remove();
+        root.classList.remove('boot');
+        //Replay the current section's entry animation
+        const current = document.querySelector('.section.active');
+        current.classList.remove('active');
+        void current.offsetWidth;
+        current.classList.add('active');
+        current.focus({preventScroll: true});
+    }
+    function dismiss(){
+        if(done) return;
+        done = true;
+        try{ sessionStorage.setItem('booted', '1'); }catch(err){}
+        behind.forEach((node) => node.inert = false);
+        document.removeEventListener('keydown', dismiss);
+        boot.classList.add('is-exiting');
+        boot.addEventListener('animationend', (e) =>{
+            if(e.target === boot) finish();
+        });
+        //Fallback if animations are disabled
+        setTimeout(() =>{ if(boot.isConnected) finish(); }, 900);
+    }
+
+    document.addEventListener('keydown', dismiss);
+    boot.addEventListener('pointerdown', dismiss);
+    boot.addEventListener('click', dismiss);
+}
+
 PageTransitions();
+BootScreen();
 syncRepos();

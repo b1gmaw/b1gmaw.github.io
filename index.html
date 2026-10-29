@@ -15,9 +15,37 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles/styles.css">
+    <script>
+        // Show the boot screen once per session; without JS it never appears
+        try{ if(!sessionStorage.getItem('booted')) document.documentElement.classList.add('boot'); }
+        catch(err){ document.documentElement.classList.add('boot'); }
+    </script>
 </head>
 
 <body class="main-content">
+    <div class="boot-screen" id="boot" role="dialog" aria-modal="true" aria-label="Intro screen">
+        <ol class="boot-log" aria-hidden="true">
+            <li>MAW//OS boot sequence <span class="ok">v2026.10</span></li>
+            <li>mounting /home/maw <span class="dots"></span> <span class="ok">ok</span></li>
+            <li>loading modules: typescript, apps-script, python <span class="dots"></span> <span class="ok">ok</span></li>
+            <li>linking github uplink <span class="dots"></span> <span class="ok">ok</span></li>
+            <li>language packs: jingpho · burmese · english · 日本語 <span class="ok">ok</span></li>
+            <li>all systems nominal<span class="cursor"></span></li>
+        </ol>
+
+        <div class="boot-center">
+            <p class="boot-kicker">portfolio // web developer</p>
+            <p class="boot-title glitch" data-text="WELCOME">WELCOME</p>
+            <div class="boot-progress" aria-hidden="true"><span></span></div>
+            <button type="button" class="boot-continue">
+                <span class="key-hint">Press any key to continue</span>
+                <span class="tap-hint">Tap to continue</span>
+            </button>
+        </div>
+
+        <p class="boot-foot" aria-hidden="true"><span>b1gmaw</span><span>build 2026.10</span></p>
+    </div>
+
     <a class="skip-link" href="#home">Skip to content</a>
     <div class="fx-scanlines" aria-hidden="true"></div>
     <div class="fx-grain" aria-hidden="true"></div>

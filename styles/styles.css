@@ -25,6 +25,7 @@
   --z-fx: 20;
   --z-ui: 30;
   --z-skip: 40;
+  --z-boot: 50;
 }
 
 .light-mode {
@@ -1059,6 +1060,285 @@ header.section {
   .glitch::before,
   .glitch::after {
     display: none;
+  }
+}
+/*Boot screen*/
+.boot-screen {
+  display: none;
+}
+
+html.boot {
+  overflow: hidden;
+}
+html.boot .boot-screen {
+  display: grid;
+}
+
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-boot);
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  cursor: pointer;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  --boot-scan: rgba(0, 0, 0, .22);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 2px, var(--boot-scan) 2px 3px), radial-gradient(ellipse 55% 45% at 50% 55%, var(--color-glow), transparent 70%);
+}
+.boot-screen::before {
+  content: "";
+  position: absolute;
+  inset: clamp(0.6rem, 2vw, 1.1rem);
+  pointer-events: none;
+  background: linear-gradient(var(--color-accent), var(--color-accent)) top left/2.5rem 2px, linear-gradient(var(--color-accent), var(--color-accent)) top left/2px 2.5rem, linear-gradient(var(--color-accent), var(--color-accent)) bottom right/2.5rem 2px, linear-gradient(var(--color-accent), var(--color-accent)) bottom right/2px 2.5rem;
+  background-repeat: no-repeat;
+}
+.boot-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--color-accent);
+  opacity: 0;
+}
+.boot-screen.is-exiting {
+  animation: bootOut 0.6s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.boot-screen.is-exiting::after {
+  animation: bootFlash 0.6s ease-out forwards;
+}
+
+.light-mode .boot-screen {
+  --boot-scan: rgba(0, 0, 0, .06);
+}
+
+.boot-log {
+  font-family: var(--font-mono);
+  font-size: clamp(0.66rem, 1.6vw, 0.78rem);
+  line-height: 1.9;
+  color: var(--color-muted);
+}
+.boot-log li {
+  opacity: 0;
+  animation: bootLine 0.01s steps(1) forwards;
+}
+.boot-log li:nth-child(1) {
+  animation-delay: 230ms;
+}
+.boot-log li:nth-child(2) {
+  animation-delay: 460ms;
+}
+.boot-log li:nth-child(3) {
+  animation-delay: 690ms;
+}
+.boot-log li:nth-child(4) {
+  animation-delay: 920ms;
+}
+.boot-log li:nth-child(5) {
+  animation-delay: 1150ms;
+}
+.boot-log li:nth-child(6) {
+  animation-delay: 1380ms;
+}
+.boot-log li::before {
+  content: "> ";
+  color: var(--color-accent);
+}
+.boot-log .dots::before {
+  content: "........";
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+.boot-log .ok {
+  color: var(--color-cyan);
+}
+.boot-log .cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 0.3em;
+  vertical-align: -0.15em;
+  background: var(--color-accent);
+  animation: blink 1s steps(1) infinite;
+}
+
+.boot-center {
+  place-self: center;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.boot-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  opacity: 0;
+  animation: riseIn 0.5s var(--ease) forwards;
+  animation-delay: 690ms;
+}
+
+.boot-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 19vw, 11rem);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
+  margin: 0.5rem 0 1.75rem;
+  opacity: 0;
+  animation: bootTitle 0.7s steps(6) forwards;
+  animation-delay: 690ms;
+}
+
+.boot-progress {
+  width: min(22rem, 70vw);
+  height: 4px;
+  background: var(--color-line);
+  margin-bottom: 2.25rem;
+}
+.boot-progress span {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: bootLoad 1330ms steps(18) forwards;
+  animation-delay: 300ms;
+}
+
+.boot-continue {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--color-line);
+  transition: border-color 0.2s var(--ease);
+  opacity: 0;
+  animation: bootLine 0.01s steps(1) forwards 1630ms, bootPulse 1.6s ease-in-out infinite 1930ms;
+}
+.boot-continue::before, .boot-continue::after {
+  color: var(--color-accent);
+}
+.boot-continue::before {
+  content: "[ ";
+}
+.boot-continue::after {
+  content: " ]";
+}
+.boot-continue:focus-visible, .boot-continue:hover {
+  outline: none;
+  border-color: var(--color-accent);
+}
+.boot-continue .tap-hint {
+  display: none;
+}
+@media (hover: none) and (pointer: coarse) {
+  .boot-continue .key-hint {
+    display: none;
+  }
+  .boot-continue .tap-hint {
+    display: inline;
+  }
+}
+
+.boot-foot {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+@keyframes bootLine {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes bootTitle {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: translateX(-10px);
+  }
+  40% {
+    opacity: 1;
+    clip-path: inset(30% 0 40% 0);
+    transform: translateX(8px);
+  }
+  70% {
+    clip-path: inset(0 0 20% 0);
+    transform: translateX(-4px);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+@keyframes bootLoad {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes bootPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes bootOut {
+  0% {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+  15% {
+    transform: translateX(-12px) skewX(-8deg);
+  }
+  30% {
+    transform: translateX(10px) skewX(6deg);
+    clip-path: inset(0 0 0 0);
+  }
+  60% {
+    transform: scaleY(1);
+    clip-path: inset(48% 0 48% 0);
+  }
+  85% {
+    clip-path: inset(49.8% 20% 49.8% 20%);
+  }
+  100% {
+    clip-path: inset(50% 50% 50% 50%);
+    opacity: 0;
+  }
+}
+@keyframes bootFlash {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boot-log li,
+  .boot-kicker,
+  .boot-title,
+  .boot-progress span,
+  .boot-continue {
+    animation-delay: 0s !important;
   }
 }
 @media screen and (max-width: 1024px) {
