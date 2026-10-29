@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maw — web developer</title>
+    <meta name="description" content="Maw builds small, sharp tools for the Japanese web: browser extensions, Apps Script systems and converters. TypeScript, JavaScript, Python.">
+    <meta name="theme-color" content="#0b0c10">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Maw — web developer">
+    <meta property="og:description" content="Tools that make Japanese web software less painful. Currently building dejapanify.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M0 0h26l6 6v26H6l-6-6z' fill='%23f3e600'/%3E%3Cpath d='M7 23V9h3l4 6 4-6h3v14h-3v-9l-4 6-4-6v9z' fill='%230b0c10'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body class="main-content">
+    <a class="skip-link" href="#home">Skip to content</a>
+    <div class="fx-scanlines" aria-hidden="true"></div>
+    <div class="fx-grain" aria-hidden="true"></div>
+
+    <header class="section sec1 header active" id="home" tabindex="-1">
+        <div class="header-content">
+            <div class="left-header">
+                <p class="eyebrow"><span class="blink" aria-hidden="true">▮</span> id.scan // subject located</p>
+                <h1 class="name">
+                    <span class="glitch" data-text="MAW">MAW</span>
+                    <span class="role">Web developer. I build tools that make Japanese websites less painful to use.</span>
+                </h1>
+                <p class="lede">
+                    Browser extensions, Google Apps Script systems and small converters, written in TypeScript and JavaScript. Most of it started as a fix for something that annoyed me.
+                </p>
+                <div class="btn-con">
+                    <button type="button" class="main-btn" data-id="portfolio">
+                        <span class="btn-text">See what I'm building</span>
+                        <span class="btn-icon"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                    </button>
+                    <a href="https://github.com/b1gmaw" target="_blank" rel="noopener" class="text-link">
+                        github.com/b1gmaw <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <aside class="right-header hud" aria-label="Status readout">
+                <div class="hud-head">
+                    <span>sys.status</span>
+                    <span class="hud-live"><i aria-hidden="true"></i> online</span>
+                </div>
+                <dl class="hud-list">
+                    <div>
+                        <dt>current side-gig</dt>
+                        <dd><span class="hl">dejapanify</span> — 半角・全角 form fixer, live on Chrome, Edge and Firefox</dd>
+                    </div>
+                    <div>
+                        <dt>stack</dt>
+                        <dd>TypeScript · JavaScript · Apps Script · Python</dd>
+                    </div>
+                    <div>
+                        <dt>languages</dt>
+                        <dd>Jingpho · Burmese · English · 日本語 <span class="tag">JLPT N1</span></dd>
+                    </div>
+                    <div>
+                        <dt>public repos</dt>
+                        <dd class="num"><span data-stat="repo-count">3</span></dd>
+                    </div>
+                    <div>
+                        <dt>last push</dt>
+                        <dd class="num"><span data-stat="last-push">2026-10-26</span></dd>
+                    </div>
+                </dl>
+                <div class="hud-bar" aria-hidden="true"><span></span></div>
+            </aside>
+        </div>
+    </header>
+
+    <main>
+        <section class="section sec2 about" id="about" tabindex="-1">
+            <div class="main-title">
+                <p class="eyebrow">02 // dossier</p>
+                <h2>About <span>me</span></h2>
+            </div>
+
+            <div class="about-container">
+                <div class="left-about">
+                    <p>
+                        I came to Japan to study the language, passed JLPT N1, and went on to earn a Business Administration degree at Ryukoku University. I now work in the international department of a Japanese language school. Programming started on the side and turned into the thing I spend most evenings on.
+                    </p>
+                    <p>
+                        Living between four languages makes the rough edges of Japanese web software hard to miss: forms that reject your input over invisible character widths, admin work held together by spreadsheets. I like building the tool that removes the friction, then making it solid enough that other people rely on it every day.
+                    </p>
+                </div>
+
+                <div class="right-about">
+                    <h3 class="stat-title">Loadout</h3>
+                    <div class="skill-group">
+                        <p class="skill-label">daily</p>
+                        <ul class="chips">
+                            <li>TypeScript</li>
+                            <li>JavaScript</li>
+                            <li>HTML / CSS / SCSS</li>
+                            <li>Google Apps Script</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <p class="skill-label">also</p>
+                        <ul class="chips chips-dim">
+                            <li>Python</li>
+                            <li>WebExtensions (MV3)</li>
+                            <li>Node test runner</li>
+                            <li>Playwright</li>
+                            <li>Google Sheets as a database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="stat-title">Timeline</h3>
+            <ol class="timeline">
+                <li class="timeline-item">
+                    <p class="timeline-duration">2018 — 2020</p>
+                    <h4>Kyoto Minsai Japanese Language School <small>higher-education prep course</small></h4>
+                    <p>Two years of Japanese. Passed JLPT N1 and a university entrance exam.</p>
+                </li>
+                <li class="timeline-item">
+                    <p class="timeline-duration">Apr 2020 — Mar 2026</p>
+                    <h4>Ryukoku University <small>BBA · Business / Corporate Communications</small></h4>
+                    <p>Bachelor of Business Administration, plus a certificate for completing the English Communication course.</p>
+                </li>
+                <li class="timeline-item">
+                    <p class="timeline-duration">2024</p>
+                    <h4>First shipped tools <small>text_converter</small></h4>
+                    <p>A half-width / full-width text converter — the first version of an idea I'm still working on.</p>
+                </li>
+                <li class="timeline-item is-now">
+                    <p class="timeline-duration">Mar 2026 —</p>
+                    <h4>Kyoto Minsai Japanese Language School <small>International Department staff</small></h4>
+                    <p>Permanent, on-site role on the international team, working across English and Japanese.</p>
+                </li>
+                <li class="timeline-item is-now">
+                    <p class="timeline-duration">2026</p>
+                    <h4>Public releases <small>dejapanify · Student Management System</small></h4>
+                    <p>Published dejapanify to three browser stores and open-sourced an Apps Script system a school's staff use every day.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section class="section sec3 portfolio" id="portfolio" tabindex="-1">
+            <div class="main-title">
+                <p class="eyebrow">03 // active jobs</p>
+                <h2>Now <span>building</span></h2>
+            </div>
+            <div class="port-head">
+                <p class="port-text">
+                    Everything here is public on GitHub. Dates and status update from the GitHub API when the page loads.
+                </p>
+                <p class="sync" data-sync="loading" role="status" aria-live="polite">
+                    <i aria-hidden="true"></i><span class="sync-text">Syncing with GitHub…</span>
+                </p>
+            </div>
+
+            <div class="portfolios">
+                <article class="portfolio-item featured" data-repo="dejapanify">
+                    <div class="item-top">
+                        <span class="badge" data-status>active</span>
+                        <span class="meta"><span class="lang lang-ts"></span>TypeScript · pushed <time data-pushed datetime="2026-10-02">2026-10-02</time></span>
+                    </div>
+                    <h3>dejapanify</h3>
+                    <p class="item-desc">
+                        A browser extension that fixes the unintuitive parts of Japanese websites, starting with the 半角・全角 guessing game on forms. It reads what each field actually requires — the <code>pattern</code> attribute, the printed hint, the placeholder example — and converts your input to match.
+                    </p>
+                    <pre class="demo" aria-label="Example conversions"><span class="k">フリガナ</span>  やまだ たろう   <span class="arrow">→</span> <span class="ok">ヤマダ　タロウ</span>
+<span class="k">郵便番号</span>  １５０－０００１ <span class="arrow">→</span> <span class="ok">1500001</span>
+<span class="k">メール</span>    ｅｘａｍｐｌｅ＠… <span class="arrow">→</span> <span class="ok">example@…</span></pre>
+                    <ul class="facts">
+                        <li>Chromium + Firefox</li>
+                        <li>no runtime dependencies</li>
+                        <li>no network access</li>
+                    </ul>
+                    <div class="item-links">
+                        <a href="https://b1gmaw.github.io/dejapanify/" target="_blank" rel="noopener" class="main-btn small">
+                            <span class="btn-text">Install</span>
+                            <span class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+                        </a>
+                        <a href="https://github.com/b1gmaw/dejapanify" target="_blank" rel="noopener" class="text-link"><i class="fa-brands fa-github" aria-hidden="true"></i> Source</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-item" data-repo="Student-Management-System">
+                    <div class="item-top">
+                        <span class="badge" data-status>active</span>
+                        <span class="meta"><span class="lang lang-js"></span>JavaScript · pushed <time data-pushed datetime="2026-10-26">2026-10-26</time></span>
+                    </div>
+                    <h3>Student Management System <small lang="ja">学生管理システム</small></h3>
+                    <p class="item-desc">
+                        A bilingual Google Apps Script web app for running a Japanese language school: interview scheduling, dorm assignment, placement tests, student records, recruitment figures and application paperwork. Sheets is the database, Drive holds the files.
+                    </p>
+                    <ul class="facts">
+                        <li>used daily by school staff</li>
+                        <li>role-based permissions</li>
+                        <li>AGPL-3.0</li>
+                    </ul>
+                    <div class="item-links">
+                        <a href="https://github.com/b1gmaw/Student-Management-System" target="_blank" rel="noopener" class="text-link"><i class="fa-brands fa-github" aria-hidden="true"></i> Source</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-item" data-repo="text_converter">
+                    <div class="item-top">
+                        <span class="badge is-stable" data-status>stable</span>
+                        <span class="meta"><span class="lang lang-js"></span>JavaScript · pushed <time data-pushed datetime="2026-07-08">2026-07-08</time></span>
+                    </div>
+                    <h3>text_converter</h3>
+                    <p class="item-desc">
+                        Paste text, convert it between half-width and full-width. A small tool, and the prototype that led to dejapanify.
+                    </p>
+                    <div class="item-links">
+                        <a href="https://github.com/b1gmaw/text_converter" target="_blank" rel="noopener" class="text-link"><i class="fa-brands fa-github" aria-hidden="true"></i> Source</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section sec5 contact" id="contact" tabindex="-1">
+            <div class="contact-container">
+                <div class="main-title">
+                    <p class="eyebrow">04 // uplink</p>
+                    <h2>Get in <span>touch</span></h2>
+                </div>
+                <div class="contact-content-container">
+                    <div class="left-contact">
+                        <p>
+                            Message me on LinkedIn or Discord, or open an issue on any of the repos — bug reports, feature ideas and "this form still breaks" reports for dejapanify are all welcome.
+                        </p>
+                        <a href="https://www.linkedin.com/in/zaw-seng-maw-maran-0211a5382/" target="_blank" rel="noopener" class="uplink">
+                            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                            <span>
+                                <small>linkedin</small>
+                                Zaw Seng Maw
+                            </span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://discord.com/users/257564032888864770" target="_blank" rel="noopener" class="uplink">
+                            <i class="fa-brands fa-discord" aria-hidden="true"></i>
+                            <span>
+                                <small>discord</small>
+                                Send a message
+                            </span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://github.com/b1gmaw" target="_blank" rel="noopener" class="uplink">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                            <span>
+                                <small>github</small>
+                                b1gmaw
+                            </span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://github.com/b1gmaw/dejapanify/issues" target="_blank" rel="noopener" class="uplink">
+                            <i class="fa-solid fa-bug" aria-hidden="true"></i>
+                            <span>
+                                <small>report a broken form</small>
+                                dejapanify/issues
+                            </span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <dl class="contact-info">
+                        <div class="contact-item">
+                            <dt><i class="fa-solid fa-language" aria-hidden="true"></i> Languages</dt>
+                            <dd>Jingpho, Burmese, English, Japanese</dd>
+                        </div>
+                        <div class="contact-item">
+                            <dt><i class="fa-solid fa-code" aria-hidden="true"></i> Open to</dt>
+                            <dd>Web tools, browser extensions, Apps Script automation</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="controls" aria-label="Sections">
+        <button type="button" class="control control-1 active-btn" data-id="home" aria-label="Home" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i><span class="tip">home</span>
+        </button>
+        <button type="button" class="control control-2" data-id="about" aria-label="About">
+            <i class="fa-solid fa-user" aria-hidden="true"></i><span class="tip">about</span>
+        </button>
+        <button type="button" class="control control-3" data-id="portfolio" aria-label="Now building">
+            <i class="fa-solid fa-microchip" aria-hidden="true"></i><span class="tip">building</span>
+        </button>
+        <button type="button" class="control control-5" data-id="contact" aria-label="Contact">
+            <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i><span class="tip">contact</span>
+        </button>
+    </nav>
+
+    <button type="button" class="theme-btn" aria-pressed="false" aria-label="Toggle yellow mode">
+        <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>
