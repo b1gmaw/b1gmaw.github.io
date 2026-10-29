@@ -1062,6 +1062,14 @@ header.section {
     display: none;
   }
 }
+.portfolio-item.featured:not(:has(.demo)) {
+  grid-template-columns: 1fr;
+}
+
+.facts.topics li::before {
+  content: "#";
+}
+
 /*Boot screen*/
 .boot-screen {
   display: none;
