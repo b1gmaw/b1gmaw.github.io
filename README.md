@@ -1,6 +1,6 @@
 # b1gmaw.github.io
 
-My portfolio, served at https://b1gmaw.github.io/. A single static page (HTML, SCSS, vanilla JS) with a Cyberpunk-inspired HUD theme, a black-on-yellow alternate mode and a "press any key" boot screen.
+My portfolio, served at https://b1gmaw.github.io/. A single static page (HTML, SCSS, vanilla JS) with a Cyberpunk-inspired HUD theme, a light netrunner (ICE) mode and a "press any key" boot screen.
 
 This repo is both the source and the deployed site: GitHub Pages serves `main`, so merging a PR publishes it.
 
