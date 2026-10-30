@@ -49,20 +49,20 @@
     --z-boot: 50;
 }
 
-// "Yellow mode": the inverted menu-screen palette
+// Light mode: netrunner ICE palette
 .light-mode{
-    --color-bg: #f3e600;
-    --color-surface: #e8db00;
-    --color-surface-2: #ddd000;
-    --color-text: #0b0c10;
-    --color-muted: #4a4614;
-    --color-accent: #0b0c10;
-    --color-on-accent: #f3e600;
-    --color-cyan: #0b5f66;
-    --color-red: #c4102c;
-    --color-line: rgba(11, 12, 16, .16);
-    --color-line-strong: rgba(11, 12, 16, .5);
-    --color-glow: rgba(11, 12, 16, 0);
+    --color-bg: #e9eef0;
+    --color-surface: #f4f7f8;
+    --color-surface-2: #dde5e8;
+    --color-text: #0d1a20;
+    --color-muted: #4b5d66;
+    --color-accent: #00737d;
+    --color-on-accent: #f4f7f8;
+    --color-cyan: #0f5f8a;
+    --color-red: #d0203f;
+    --color-line: rgba(0, 115, 125, .18);
+    --color-line-strong: rgba(0, 115, 125, .45);
+    --color-glow: rgba(0, 115, 125, .14);
 }
 
 html{
@@ -83,6 +83,16 @@ body{
     min-height: 100dvh;
     overflow-x: hidden;
     transition: background-color .3s var(--ease), color .3s var(--ease);
+}
+
+// Light mode adds a faint cyberspace grid under the haze
+body.light-mode{
+    background-image:
+        radial-gradient(ellipse 60% 50% at 85% 0%, rgba(15, 95, 138, .08), transparent 70%),
+        radial-gradient(ellipse 50% 40% at 0% 100%, var(--color-glow), transparent 70%),
+        linear-gradient(rgba(0, 115, 125, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 115, 125, .06) 1px, transparent 1px);
+    background-size: auto, auto, 48px 48px, 48px 48px;
 }
 
 a{
@@ -157,6 +167,10 @@ code, pre{
 
 .light-mode .fx-scanlines{
     opacity: .25;
+}
+
+.light-mode .fx-grain{
+    opacity: .04;
 }
 
 /*Sections*/
@@ -284,7 +298,7 @@ header.section{
         display: grid;
         place-items: center;
         padding: 0 1rem;
-        border-left: 1px solid rgba(11, 12, 16, .25);
+        border-left: 1px solid color-mix(in srgb, var(--color-on-accent) 30%, transparent);
         transition: transform .2s var(--ease);
     }
     &:hover{

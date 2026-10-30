@@ -47,14 +47,23 @@ function PageTransitions(){
 
     //Theme Button
     const themeBtn = document.querySelector('.theme-btn');
-    try{
-        if(localStorage.getItem('theme') === 'yellow') document.body.classList.add('light-mode');
-    }catch(err){}
-    themeBtn.setAttribute('aria-pressed', document.body.classList.contains('light-mode'));
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+    function setLightMode(isLight){
+        document.body.classList.toggle('light-mode', isLight);
+        themeBtn.setAttribute('aria-pressed', isLight);
+        themeColorMeta.setAttribute('content', isLight ? '#e9eef0' : '#0b0c10');
+    }
+
+    let savedTheme = null;
+    try{ savedTheme = localStorage.getItem('theme'); }catch(err){}
+    // 'yellow' is what the old yellow mode saved
+    setLightMode(savedTheme === 'light' || savedTheme === 'yellow');
+
     themeBtn.addEventListener('click', ()=>{
-        const on = document.body.classList.toggle('light-mode');
-        themeBtn.setAttribute('aria-pressed', on);
-        try{ localStorage.setItem('theme', on ? 'yellow' : 'dark'); }catch(err){}
+        const isLight = !document.body.classList.contains('light-mode');
+        setLightMode(isLight);
+        try{ localStorage.setItem('theme', isLight ? 'light' : 'dark'); }catch(err){}
     })
 }
 
