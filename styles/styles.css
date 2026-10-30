@@ -18,8 +18,8 @@
   --color-line: rgba(243, 230, 0, .14);
   --color-line-strong: rgba(243, 230, 0, .38);
   --color-glow: rgba(243, 230, 0, .22);
-  --font-display: "Rajdhani", "Arial Narrow", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: 'Rajdhani', 'Arial Narrow', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --ease: cubic-bezier(.2, .8, .2, 1);
   --z-section: 1;
   --z-fx: 20;
@@ -29,18 +29,18 @@
 }
 
 .light-mode {
-  --color-bg: #f3e600;
-  --color-surface: #e8db00;
-  --color-surface-2: #ddd000;
-  --color-text: #0b0c10;
-  --color-muted: #4a4614;
-  --color-accent: #0b0c10;
-  --color-on-accent: #f3e600;
-  --color-cyan: #0b5f66;
-  --color-red: #c4102c;
-  --color-line: rgba(11, 12, 16, .16);
-  --color-line-strong: rgba(11, 12, 16, .5);
-  --color-glow: rgba(11, 12, 16, 0);
+  --color-bg: #e9eef0;
+  --color-surface: #f4f7f8;
+  --color-surface-2: #dde5e8;
+  --color-text: #0d1a20;
+  --color-muted: #4b5d66;
+  --color-accent: #00737d;
+  --color-on-accent: #f4f7f8;
+  --color-cyan: #0f5f8a;
+  --color-red: #d0203f;
+  --color-line: rgba(0, 115, 125, .18);
+  --color-line-strong: rgba(0, 115, 125, .45);
+  --color-glow: rgba(0, 115, 125, .14);
 }
 
 html {
@@ -59,6 +59,11 @@ body {
   min-height: 100dvh;
   overflow-x: hidden;
   transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+body.light-mode {
+  background-image: radial-gradient(ellipse 60% 50% at 85% 0%, rgba(15, 95, 138, 0.08), transparent 70%), radial-gradient(ellipse 50% 40% at 0% 100%, var(--color-glow), transparent 70%), linear-gradient(rgba(0, 115, 125, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 115, 125, 0.06) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
 }
 
 a {
@@ -133,6 +138,10 @@ code, pre {
 
 .light-mode .fx-scanlines {
   opacity: 0.25;
+}
+
+.light-mode .fx-grain {
+  opacity: 0.04;
 }
 
 /*Sections*/
@@ -280,7 +289,7 @@ header.section {
   display: grid;
   place-items: center;
   padding: 0 1rem;
-  border-left: 1px solid rgba(11, 12, 16, 0.25);
+  border-left: 1px solid color-mix(in srgb, var(--color-on-accent) 30%, transparent);
   transition: transform 0.2s var(--ease);
 }
 .main-btn:hover {
@@ -526,10 +535,6 @@ header.section {
   isolation: isolate;
   background: var(--color-line-strong);
   clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
-  padding: 1.6rem 1.75rem 1.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  transform: translateY(1.5rem);
 }
 .hud::before {
   content: "";
@@ -538,6 +543,12 @@ header.section {
   z-index: -1;
   background: var(--color-surface);
   clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+.hud {
+  padding: 1.6rem 1.75rem 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  transform: translateY(1.5rem);
 }
 .hud .hud-head {
   display: flex;
@@ -791,10 +802,6 @@ header.section {
   isolation: isolate;
   background: var(--color-line-strong);
   clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-  display: flex;
-  flex-direction: column;
-  padding: 1.6rem 1.75rem 1.75rem;
-  transition: transform 0.3s var(--ease);
 }
 .portfolio-item::before {
   content: "";
@@ -803,6 +810,12 @@ header.section {
   z-index: -1;
   background: var(--color-surface);
   clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+.portfolio-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 1.75rem 1.75rem;
+  transition: transform 0.3s var(--ease);
 }
 .portfolio-item::after {
   content: "";
@@ -977,6 +990,16 @@ header.section {
   isolation: isolate;
   background: var(--color-line-strong);
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+.uplink::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background: var(--color-surface);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+.uplink {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -987,14 +1010,6 @@ header.section {
   font-size: 1.35rem;
   font-weight: 700;
   transition: transform 0.25s var(--ease), color 0.25s var(--ease);
-}
-.uplink::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: -1;
-  background: var(--color-surface);
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
 }
 .uplink + .uplink {
   margin-top: 0.75rem;
